@@ -1,22 +1,22 @@
 import "./style.css"
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"
-import colors from "nice-color-palettes/100.json"
+// import colors from "nice-color-palettes/100.json"
 
-function hashCode(str: string) {
-	// java String#hashCode
-	var hash = 0
-	for (var i = 0; i < str.length; i++) {
-		hash = str.charCodeAt(i) + ((hash << 5) - hash)
-	}
-	return hash
-}
+// function hashCode(str: string) {
+// 	// java String#hashCode
+// 	var hash = 0
+// 	for (var i = 0; i < str.length; i++) {
+// 		hash = str.charCodeAt(i) + ((hash << 5) - hash)
+// 	}
+// 	return hash
+// }
 
-function intToRGB(i: any) {
-	var c = (i & 0x00ffffff).toString(16).toUpperCase()
+// function intToRGB(i: any) {
+// 	var c = (i & 0x00ffffff).toString(16).toUpperCase()
 
-	return "00000".substring(0, 6 - c.length) + c
-}
+// 	return "00000".substring(0, 6 - c.length) + c
+// }
 
 const canvas = document.querySelector<HTMLCanvasElement>("canvas")!
 
@@ -53,14 +53,14 @@ const materialLine = new THREE.LineBasicMaterial({ color: 0xbababa })
 
 const objects = new THREE.Group()
 const len = 10
-const COLORS = colors.flat(5)
+// const COLORS = colors.flat(5)
 
 for (let i = 0; i < len; i++) {
 	for (let j = 0; j < len; j++) {
-		const material = new THREE.MeshMatcapMaterial({
-			color: `#${intToRGB(hashCode(COLORS[j * i + 1]))}`,
-			matcap: new THREE.TextureLoader().load("./texture.jpg"),
-		})
+		// const material = new THREE.MeshMatcapMaterial({
+		// 	color: `#${intToRGB(hashCode(COLORS[j * i + 1]))}`,
+		// 	matcap: new THREE.TextureLoader().load("./texture.jpg"),
+		// })
 		// const geo = new THREE.BoxGeometry(1, j + 1, 1)
 		// geo.translate(0, (i + 1) / 2, 0)
 		const geo = new THREE.SphereGeometry(0.5, 32, 32)
@@ -161,7 +161,6 @@ const tick = () => {
 	const elapsedTime = clock.getElapsedTime()
 	objects.children.forEach((sphere, i) => {
 		setTimeout(() => {
-			const odd = i % 2
 			sphere.position.y +=
 				Math.sin(elapsedTime) * Math.cos(elapsedTime) * 0.1
 		}, i * 10)
